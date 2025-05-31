@@ -40,4 +40,15 @@ public class TodoService {
     public List<TodoList> getAllLists() {
         return todoListRepository.findAll();
     }
+
+    public void toggleTask(Long taskId) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setCompleted(!task.isCompleted());
+        taskRepository.save(task);
+    }
+
+    public void deleteList(Long listId) {
+        todoListRepository.deleteById(listId);
+    }
 }

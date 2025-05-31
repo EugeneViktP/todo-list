@@ -33,4 +33,11 @@ public class TodoController {
         todoService.addTaskToList(listId, taskDesc);
         return "redirect:/todo";
     }
+
+
+    @PostMapping("/tasks/{taskId}/toggle")
+    public String toggleTask(@PathVariable Long taskId) {
+        todoService.toggleTask(taskId);
+        return "redirect:/todo";
+    }
 }

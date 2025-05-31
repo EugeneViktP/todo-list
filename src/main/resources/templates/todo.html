@@ -25,8 +25,16 @@
 
         <ul>
             <li th:each="task : ${list.tasks}"
-            th:text="${task.description}"
+
             th:style="${task.completed} ? 'text-decoration: line-through' : ' ' ">
+                <span th:text="${task.description}"></span>
+
+                <form th:action="@{/todo/tasks/{taskId}/toggle(taskId=${task.id})}"
+                      method="post" style="display: inline;">
+                    <button type="submit">
+                        <span th:text="${task.completed} ? '☑ Сделано' : '☐ Сделать'"></span>
+                    </button>
+                </form>
 
             </li>
         </ul>
